@@ -1,0 +1,19 @@
+- strace -> traces system calls invoked by a process.
+
+- gdb -> a source-level debugger
+
+- perf -> a collection of Linux performance tools
+
+- tcpdump -> collects network packets.
+
+- BCC -> for show the interactions between the programs and the kernel.
+
+What makes BCC especially powerful is that its tools can be used on
+live production systems that are running critical applications without causing
+harm to the system. This is particularly useful for system administrators who
+must monitor system performance to identify possible bottlenecks or security
+exploits. Figure 2.20 illustrates the wide range of tools currently provided by
+BCC and eBPF and their ability to trace essentially any area of the Linux operating system. BCC is a rapidly changing technology with new features constantly
+being added.
+
+

@@ -1,0 +1,49 @@
+- Communications may be implemented via shared memory, in which two or more processes read and write to a shared section of memory, or message passing, in which packets of information in predefined formats are moved between processes by the operating system.
+
+- In determining how best to use the CPU, operating systems have CPU-scheduling routines that take into account the speed of the CPU, the process that must be executed, the number of processing core on the CPU, and other factors.
+
+- Logging: we want to keep track of which programs use how much and what kinds of computer resources. This record keeping may be used for accounting (so that users can be billed) or simply for accumulating usage statistics. Usage statistics may be a valuable tool for system administrators who wish to reconfigure the system to improve computing services.
+
+-----------------------------------
+rm file.txt
+would search for a file called rm, load the file into memory, and execute it with the parameter file.txt. The logic associated with the rm command would be defined completely by the code in the file rm.
+
+-----------------------------------
+
+- System administrators who manage computers and power users who have deep knowledge of a system frequently use the command-line interface. For them, it is more efficient, giving them faster access to the activities they need to perform. command-line interfaces usually make repetitive tasks easier.
+
+- A programmer accesses an API via a library of code provided by the operating systems. In the case of unix and linux for programs written in the C language, the library is called libc.
+
+- The RTE provides a system-call interface that serves as the link to system calls made available by the operating system. The system-call interface intercepts function calls in the API and invokes the necessary system calls within the operating system.
+
+Tupically, a number is associated with each system call, and the system-call interface maintains a table indexed according to these numbers. The system-call interface then invokes the intended system call in the operating system kernel and returns the status of the system call.
+
+- Three general methods are used to pass parameters to the operating system. The simplest approach is to pass the parameters in registers. In some cases, the parameters are generally stored in a block, or table, in memory, and the address of the block is passed as a parameter in a register.
+
+- Parameters also can be placed, or pushed, onto a stack by the program and popped off the stack by the operating system. Some operating systems prefer the block or stack method because those approaches do not limit the number or length of parameters being passed.
+
+
+- Arduino platfomr does not provide an operating system; instead a small piece of software known as a boot loader loads the sketch has been loaded
+
+- An Ardunio is considered a single-tasking system, as only one sketch can be present in memory at a time; if another sketch is loaded, it replaces the existing sketch.
+
+- Sources files are compiled into object files that are designed to be loaded into any physical memory location, a format known as an relocatable object file. Next, the linker combines these relocatable object files into a single binary executable file. A loader is used to load the binary executable file into memory, where it is eligible to run on a CPU core.
+
+- When using the command line on UNIX system, for example, ./main,
+the shell first creates a new process to run the program using the fork() system call. The shell then invokes the loader with the exec() system call, passing exec() the name of the executable file. then it loads into memory.
+
+
+- The only disadantage of implementing an operating system in a higher-level language are reduced speed and increased storage requirments.
+
+- The Linux kernel is monolithic in that it runs entirely in kernel mode in a single adress space, and it does have a modular design that allows the kernel to be modified during run time.
+
+- BIOS or UEFI, initialize the CPU registers and device controller ..
+
+- Consider that a kernel failure in the file-system code would make it risky for the kernel to try to save its satte to a file on the file system before rebooting, A common technique is to save the kernel's memory state to a section of disk set aside for this purpose that contains no file system. If the kernel detects an unrecoverable error, it writes the entire contents of memory, or at least the kernel-owned parts of the system memory, to the disk area.
+
+
+
+
+
+
+

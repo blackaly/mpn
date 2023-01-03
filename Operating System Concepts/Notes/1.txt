@@ -1,0 +1,117 @@
+-----------------------------------
+- SDRAM
+- cache coherency
+-----------------------------------
+- An operating system is software that manages a computer's hardware.
+- Operating system is the beauty of making computer architecture more meangiful. 
+
+- Operating System like a government, it performs no useful function by itself. It simply provides an environment within which other programs can do useful work. 
+
+- Facing numerous and possibly conflicting requests for resources, the operating system must decide how to allocate them to specific programs and users so that it can operate the computer system efficiently and fairly. 
+
+- Operating system is a control program. A control program manages the execution of user programs to prevent errors and improper use of the computer. It is especially concerned with the operation and control of I/O devices. 
+
+- the operating system is the one program running at all times on the computer, usually called the kernel. 
+
+- Along with the kernel, there are two other types of programs: system programs, which are associated with the operating system but not necesarily part of the kernel. 
+
+- Mobile operating systems often include not only a core kernel but also middleware, a set of software frameworks that provide additional services to application developers.
+
+- A device controller maintains some local buffer storage and a set of special-purpose registers. 
+
+- The device controller is responsible for moving the data between the peripheral devices that it controls and its local buffer storage. 
+
+- Operating system have a device driver for each device controller. This device driver understands the device controller and provides the rest of the operating system with a uniform interface to the device. 
+
+- to ensure orderly access to the shared memory, a memory controller synchronizes access to the memory. 
+
+- The memory controller is a digital circuit that manages the flow of data going to and from the computer's main memory. A memory controller can be a separate chip or integrated into another chip.
+
+
+- Hardware may trigger an interrupt at any time by sending a signal to the CPU, usually by way of the system bus.
+(And this is noticed by the device driver)
+
+- When the CPU is interrupted, it stops what it is doing and immediately transfers execution to a fixed location. The fixed location usually contains the starting address where the service routine for the interrupt is located. The interrupt service routine executes; on completion, the CPU resumes the interrupted computation. 
+
+
+- The basic interrupt mechanism works as follows. The CPU hardware has a wire called the interrupt-request line that the CPU senses after executing every instruction. When the CPU detects that a controller has asserted a signal on the interrupt-request line, it reads the interrupt number and jumps to the interrupt-handler routine by using that interrupt numbrer as an (index) into the interrupt vector. it then starts execution at the address associated with that index. The interrupt handler saves any state it will be changing during the operation, determines the cause of the interrupt, performs the necessary processing, performs a state restore, and executes a return from interrupt instruction to return the CPU to the execution state prior to the interrupt. 
+
+- In a modern operating system, however, we need more sophisticated interrupt-handling features: 
+	1- we need the ability to defer interrupt handling during critical processing. 
+	2- we need an efficient way to dispatch to the proper interrupt handler for
+	   a device.
+	3- we need multilevel interrupts, so that the operating system can distinguish
+	between high and low-priority interrupts and can respond with the appropriate
+	degree of urgency. 
+
+- In modern computer hardware, these three features are provided by the CPU
+and the interrupt-controller hardware.
+
+- Most CPUs have two interrup request lines. One is the nonmaskable interrupt, which is reserved for events such as unrecoverable memory errors.
+The second interrupt line is maskable: it can be turned off by the CPU before the execution of critical instruction sequences that must not be interrupted. 
+
+- The vectored interrupt is not good when we have more devices because we restricted with a size, the size of the vector, so we use interrupt chaining to solve this problem. It's like a linked list, but it still has a problems, the search probelm if we have a huge interrupt number which is not efficient.
+
+
+
+---------------------------------------------------------------------------------
+- The CPU can load instructions only from memory, so any programs must first be loaded into memory to run. 
+ 
+
+- Computers use other forms of memory as well. For example, the first program to run on computer power-on is a bootstrap program, which then loads the operating system. Since RAM is volatile--loses its content when the power is turned off or otherise lost-- we cannot trust it to hold the bootstrap program. Instrad, for this and some othter purposes, the computer uses electrically erasable programmable read-only memory (EEPROM) and other forms of firmware-- storage that is infrequently written to and is nonvolatile.
+
+- A less common term is word, which is a given computer architecture's native unit of data. A word is made up of one or more bytes. For example, a computer that has 64-bit registers and 64-bit memory addressing typically has 64-bit words. A Computer executes many operations in its native words size tather than a byte at a time. Networking measurements are an exception to this general rule; they are given in bits
+(because networks move data a bit at a time). 
+
+- EEPROM is store the static program and data that doesn't change frequently. For example, IPhone uses EEPROM to store serial numbers and hardware information about the device. 
+
+- All forms of memory provide an array of bytes. Each byte has its own address. 
+and you can control over the memory and register with the instruction load and store. 
+Load: get the data from memory into registers. Load byte or word. 
+Store: get the data from registers into memory. 
+
+- Aside from explicit loads and stores, the CPU automatically loads instructions from main memory for execution from the location stored in the program counter. 
+
+- A typical instruction-execution cycle, as executed on a system with a von Neumann architecture, first fetches an instruction from memory and stores that instruction in the instruction register. The instruction is then decoded and may cause operands to be fetched from memory and stored in some internal register. After the instruction on the operands has been executed, the result may be stored back in memory. 
+
+- Notice that the memory unit sees only a stream of memory addresses. 
+
+- The main differences among the various storage systems lie in speed, size and volatility. 
+
+- Caches can be installed to improve performance where a large disparity in access time or transfer rate exists between two components. 
+
+- Ife several processes are ready to run at the same time, the system must choose which process will run next. Making this decision is CPU Scheduling.
+
+- In order to ensure the proper execution of the system, we must be able to distunguish between the execution of operating-system code and user-defined code. The approach taken by most computer systems is to provide hardware support that allows differentiation among various modes of execution.
+
+- When a user application requests a service from the operating system (via a system call), the system must transition from user to kernel mode to fullfill the request.
+
+- At system boot time, the hardware starts in kernel mode. The operating system is then loaded and starts user applications in user mode.
+
+- Whenever a trap of interrupt occurs, the hardware switches from user mode to kernel mode.
+
+- When a system call is executed, it is typically treated by the hardware as a software interrupt. The system-call service routine is part of the operating system. The kernel examines the interrupting instruction to determine what system call has occurred; a parameter indicates what type of service the user program is requesting.
+
+- Before turning over control to the user, the operating system ensures that the timer is set to interrupt. If the timer interrupts, control transfers automatically to the operating system, which may treat the interrupt as a fatal error or may give the program more time. Clearly, instructions that modify the content of the timer are privileged.
+
+- A process is an instance of a program in execution.
+
+- A single-threaded process has one program counter specifying the next instruction to execute. The CPU executes one instruction of the process after another, until the process completes.
+
+- Thus, although, two processes may be associated with the same program, they are nevertheless considered two separate execution sequences. A multithreaded process has multiple program counters, each pointing to the next instruction to execute for a given thread.
+
+- As noted earlier, the main memory is generally the only large storage device that the CPU us able to address and access directly. For example, for the CPU to process data from disk, those data must first be transferred to main memory by the CPU-generated I/O calls.
+
+- Because secondary storage is used frequently and extensively, it must be used efficiently. The entire speed of operation of a computer may hinge on the speeds of the secondary storage subsystem and the algorithms that manipulate that subsystem.
+
+
+- If there is no data in the cache, we use the information from the source, putting a copy in the cache under the assumption that we will need it again soon.
+
+- The programmer (or compiler) implements the register-allocation and register-replacement algorithms to decide which information to keep in registers and which to keep in main memory.
+
+
+- most system have an instruction cache to hold the instructions expected to be executed next.
+
+- Emulation, which involves simulating computer hardware in software, is typically used when the source CPU type is different the target CPU Type. for example: when apple switched from the IBM Power CPU to the Intel x86 CPU for its desktop and laptop computers, it included an emulation facility called "Rosetta", which allowed applications compiled for the IBM CPU to run on the Intel CPU.
+
+

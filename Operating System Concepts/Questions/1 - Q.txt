@@ -1,0 +1,7 @@
+- The CPU can load instructions only from memory, so any programs must first be loaded into memory to run. is that means the virtual memory, when the CPU needs its data, it first goes from the virtual memory to the memory. 
+
+
+- Why is bad to put the whole kerenl in one single address space?
+
+- Why laryed operating systems structure is slow ?
+
